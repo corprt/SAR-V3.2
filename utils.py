@@ -401,9 +401,15 @@ def LLM_Response(query,context,prompt,llm):
     response = llm_chain.run({"query":query, "context":context})
     return response
 
+# llama_13b = HuggingFaceHub(
+#             repo_id="meta-llama/Llama-2-13b-chat-hf",
+#             model_kwargs={"temperature":0.01, 
+#                         "min_new_tokens":100, 
+#                         "max_new_tokens":300})
+
 llama_13b = HuggingFaceHub(
-            repo_id="meta-llama/Llama-2-13b-chat-hf",
-            model_kwargs={"temperature":0.01, 
+            repo_id="HuggingFaceH4/zephyr-7b-beta",
+            model_kwargs={"temperaturehf":0.01, 
                         "min_new_tokens":100, 
                         "max_new_tokens":300})
 
@@ -411,6 +417,7 @@ llama_13b = HuggingFaceHub(
 def llama_llm(_llm,prompt):
     response = _llm.predict(prompt)
     return response
+
 
 # Chunking with overlap
 text_splitter = RecursiveCharacterTextSplitter(
